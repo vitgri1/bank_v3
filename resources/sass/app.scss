@@ -1,0 +1,31 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+//CUSTOM SCSS
+.client-line {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    .client-info {
+        display: flex;
+        justify-content: space-around;
+    }
+    .buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        .client-funds {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding-right: 20px;
+        }
+    }
+}

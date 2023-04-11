@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController as CL;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [CL::class, 'index'])->name('index');
+
+Route::prefix('bank')->name('clients-')->group(function () {
+    Route::get('/', [CL::class, 'index'])->name('index');
+    Route::get('/create', [CL::class, 'create'])->name('create');
+    Route::post('/create', [CL::class, 'store'])->name('store');
+    Route::get('/{client}', [CL::class, 'show'])->name('show');
+    Route::get('/edit/{client}', [CL::class, 'edit'])->name('edit');
+    Route::put('/edit/{client}', [CL::class, 'update'])->name('update');
+    Route::delete('/delete/{client}', [CL::class, 'destroy'])->name('delete');
+    Route::get('/add/{client}', [CL::class, 'add'])->name('add');
+    Route::put('/add/{client}', [CL::class, 'addUpdate'])->name('addUpdate');
+    Route::get('/withdraw/{client}', [CL::class, 'withdraw'])->name('withdraw');
+    Route::put('/withdraw/{client}', [CL::class, 'withdrawUpdate'])->name('withdrawUpdate');
 });
 
 
-Route::get('/bank', fn () =>
-    '<h1 style="color: green; font-size: 40px;">Bank v3</h1>'
-);
+
+Auth::routes();
+
+Route::get('/home', [CL::class, 'index'])->name('home');
